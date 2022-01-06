@@ -22,7 +22,16 @@ app.use(cors());
 app.use("/api/blogs",blogPosts);
 
 const DB_CONNECTION = process.env.DATABASE_URL;
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 5000;
+
+
+if(process.env.NODE_ENV=="production"){
+   app.use(express.static("client/build"));
+}
+
+
+
+
 
 mongoose
    .connect(DB_CONNECTION,{useNewUrlParser:true,useUnifiedTopology:true})
